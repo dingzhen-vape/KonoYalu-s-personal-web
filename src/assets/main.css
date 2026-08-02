@@ -1,0 +1,13 @@
+#Background {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  border-radius: 5%;
+  background-color: #ced0db;
+}
+
+#MainPage {
+  position: relative;
+  left: 5%;
+  top: 5%;
+}
