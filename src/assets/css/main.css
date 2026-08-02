@@ -1,0 +1,35 @@
+img{
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: blur(10px)
+}
+
+#html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#Background {
+  /* position: fixed; */
+  top: 5px;
+  right: 5px;
+  left: 5px;
+  /* box-shadow: 5px 10px 5px #798c9bd7; */
+  width: 100%;
+  background-color: #e7e7ef61;
+  overflow-x: hidden;
+}
+
+#NavBar {
+  float: right;
+  font-weight: bold;
+  font-size: 1vw;
+  height: 10%;
+  width: 20%;
+  border-radius: 10px;
+  position: relative;
+  background: #daddef;
+}
