@@ -1,9 +1,6 @@
-
-
-
 <script lang="ts">
 import HomePage from './components/HomePage.vue'
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   components: {
@@ -31,7 +28,10 @@ async function getDailyWallpaper() {
 </script>
 
 <template>
-  <img :src="DailyWallpaper" />
+  <div class="bg-wrap">
+    <img :src="DailyWallpaper" alt="" />
+    <div class="bg-overlay"></div>
+  </div>
   <main>
     <HomePage></HomePage>
   </main>

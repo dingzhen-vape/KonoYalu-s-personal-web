@@ -1,0 +1,83 @@
+#Works {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 120px 48px;
+}
+
+.works-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.work-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.work-thumb {
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.work-info {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.work-title {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.work-card:hover .work-title {
+  color: var(--accent);
+}
+
+.work-desc {
+  font-size: 14px;
+  color: var(--text-sub);
+  line-height: 1.7;
+}
+
+.work-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.work-tag {
+  font-size: 12px;
+  color: var(--accent);
+  border: 1px solid rgba(217, 178, 106, 0.4);
+  border-radius: 2px;
+  padding: 2px 10px;
+  letter-spacing: 1px;
+}
+
+/* 窄屏适配 */
+@media (max-width: 768px) {
+  #Works {
+    padding: 100px 24px;
+  }
+
+  .works-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,40 +1,182 @@
-@import './Info.css';
+@import './Hero.css';
+@import './Works.css';
 
-img{
-  z-index: -1;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  filter: blur(10px)
+:root {
+  --overlay-color: rgba(10, 10, 15, 0.85);
+  --surface: #14141c;
+  --text-main: #f2f2f5;
+  --text-sub: #8b8b9b;
+  --accent: #d9b26a;
+  --border: rgba(242, 242, 245, 0.12);
 }
 
-#html,
-body {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-#Background {
-  top: 5px;
-  right: 5px;
-  left: 5px;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Segoe UI', sans-serif;
+  color: var(--text-main);
+  background: #0a0a0f;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.bg-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+.bg-wrap img {
   width: 100%;
-  background-color: #e7e7ef61;
-  overflow-x: hidden;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(10px) brightness(0.8);
+}
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-color);
+}
+
+/* 导航栏 */
+#NavBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
-  flex-direction: row-reverse;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(10, 10, 15, 0.6);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
 }
 
-#NavBar {
+.nav-brand {
+  font-size: 18px;
   font-weight: bold;
-  /* font-size: 1vw; */
-  height: 10%;
-  width: 20%;
-  border-radius: 10px;
-  position: relative;
-  background: #daddef;
+  letter-spacing: 1px;
 }
 
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
 
+.nav-links a {
+  font-size: 15px;
+  color: var(--text-sub);
+  transition: color 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+/* 关于我 */
+#About {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 120px 48px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  margin-bottom: 48px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  background: var(--accent);
+}
+
+.about-body {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-sub);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  line-height: 1.8;
+}
+
+.about-text p {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--text-sub);
+  margin-bottom: 16px;
+}
+
+.about-text p:first-child {
+  color: var(--text-main);
+  font-size: 18px;
+}
+
+/* 底部 */
+footer {
+  padding: 32px 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-sub);
+  border-top: 1px solid var(--border);
+}
+
+/* 窄屏适配 */
+@media (max-width: 768px) {
+  #NavBar {
+    padding: 14px 24px;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  #About {
+    padding: 100px 24px;
+  }
+
+  .about-body {
+    flex-direction: column;
+    text-align: center;
+  }
+}
