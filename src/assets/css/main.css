@@ -1,6 +1,7 @@
 @import './Hero.css';
 @import './Works.css';
 @import './TechStack.css';
+@import './Loading.css';
 
 :root {
   --overlay-color: rgba(10, 10, 15, 0.85);
@@ -137,7 +138,7 @@ a {
   font-size: 14px;
   color: var(--text-sub);
   background: var(--surface);
-  border: 3px solid var(--accent);
+  border: 1px solid var(--border);
   line-height: 1.8;
   overflow: hidden;
 }

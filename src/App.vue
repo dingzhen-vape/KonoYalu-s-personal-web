@@ -1,19 +1,52 @@
 <script lang="ts">
 import HomePage from './components/HomePage.vue'
 import axios from 'axios'
-
+import gsap from 'gsap';
 export default {
   components: {
-    HomePage
+    HomePage,
   },
   data() {
     return {
-      DailyWallpaper: ''
+      DailyWallpaper: '',
+      isLoading: true,
+      loadingStart: 0,
     }
   },
   async created() {
+    this.loadingStart = Date.now()
     this.DailyWallpaper = await getDailyWallpaper()
-  }
+    if (!this.DailyWallpaper) {
+      this.finishLoading()
+    }
+  },
+
+  mounted() {
+    this.$nextTick(() =>{
+      gsap.fromTo(".spinner",
+        {
+          opacity: 0,
+          scale: 10,
+        },{
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          ease:"power4.out"
+        }
+      )
+    })
+  },
+
+  methods: {
+    finishLoading() {
+      if (!this.isLoading) return
+      const elapsed = Date.now() - this.loadingStart
+      const remaining = Math.max(0, 1000 - elapsed)
+      setTimeout(() => {
+        this.isLoading = false
+      }, remaining)
+    },
+  },
 }
 
 async function getDailyWallpaper() {
@@ -29,10 +62,16 @@ async function getDailyWallpaper() {
 
 <template>
   <div class="bg-wrap">
-    <img :src="DailyWallpaper" alt="" />
+    <img :src="DailyWallpaper" alt="" @load="finishLoading()" @error="finishLoading()" />
     <div class="bg-overlay"></div>
   </div>
   <main>
     <HomePage></HomePage>
   </main>
+  <Transition name="fade">
+    <div v-if="isLoading" class="loading-overlay">
+      <div class="spinner"></div>
+      <p>加载中</p>
+    </div>
+  </Transition>
 </template>
