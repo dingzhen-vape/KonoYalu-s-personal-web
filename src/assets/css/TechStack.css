@@ -1,16 +1,20 @@
-#Works {
-  max-width: 960px;
+#TechStack{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 860px;
   margin: 0 auto;
   padding: 120px 48px;
 }
 
-.works-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+#TechDisplay {
+  display: flex;
+  flex-wrap: wrap;
   gap: 28px;
 }
 
-.work-card {
+.tech-card {
   display: flex;
   flex-direction: column;
   background: var(--surface);
@@ -22,64 +26,67 @@
     transform 0.3s ease;
 }
 
-.work-card:hover {
+.tech-card:hover {
   border-color: var(--accent);
   transform: translateY(-4px);
 }
 
-.work-thumb {
+.tech-thumb {
   aspect-ratio: 16 / 9;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.work-info {
+.tech-thumb img {
+  width: 48px;
+  height: 48px;
+}
+
+.tech-info {
   padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.work-title {
+.tech-name {
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 1px;
 }
 
-.work-card:hover .work-title {
+.tech-card:hover .tech-name {
   color: var(--accent);
 }
 
-.work-desc {
+.tech-desc {
   font-size: 14px;
   color: var(--text-sub);
   line-height: 1.7;
 }
 
-.work-tags {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 4px;
+.tech-proficiency {
+  border-radius: 5px;
+  height: 6px;
+  background: rgba(242, 242, 245, 0.12);
 }
 
-.work-tag {
+.tech-proficiency-fill {
+  border-radius: 5px;
+  height: 6px;
+  background-color: var(--accent);
+}
+
+.tech-proficiency-level {
   font-size: 12px;
-  color: var(--accent);
-  border: 1px solid rgba(217, 178, 106, 0.4);
-  border-radius: 2px;
-  padding: 2px 10px;
+  color: var(--text-sub);
   letter-spacing: 1px;
 }
 
-/* 窄屏适配 */
-@media (max-width: 768px) {
-  #Works {
-    padding: 100px 24px;
-  }
-
-  .works-grid {
-    grid-template-columns: 1fr;
-  }
+.tech-proficiency-fill p{
+  font-size: 12px;
+  top:50px;
+  color: var(--text-sub);
+  margin-top: 4px;
 }

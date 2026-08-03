@@ -1,5 +1,6 @@
 @import './Hero.css';
 @import './Works.css';
+@import './TechStack.css';
 
 :root {
   --overlay-color: rgba(10, 10, 15, 0.85);
@@ -136,10 +137,16 @@ a {
   font-size: 14px;
   color: var(--text-sub);
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 3px solid var(--accent);
   line-height: 1.8;
+  overflow: hidden;
 }
 
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .about-text p {
   font-size: 16px;
   line-height: 1.9;
