@@ -1,3 +1,5 @@
+@import './Info.css';
+
 img{
   z-index: -1;
   position: absolute;
@@ -13,23 +15,26 @@ body {
 }
 
 #Background {
-  /* position: fixed; */
   top: 5px;
   right: 5px;
   left: 5px;
-  /* box-shadow: 5px 10px 5px #798c9bd7; */
   width: 100%;
   background-color: #e7e7ef61;
   overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-around;
 }
 
 #NavBar {
-  float: right;
   font-weight: bold;
-  font-size: 1vw;
+  /* font-size: 1vw; */
   height: 10%;
   width: 20%;
   border-radius: 10px;
   position: relative;
   background: #daddef;
 }
+
+
