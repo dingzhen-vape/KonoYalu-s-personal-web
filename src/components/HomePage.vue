@@ -67,7 +67,9 @@
       <h2 class="section-title">作品集</h2>
       <div class="works-grid">
         <a v-for="work in works" :key="work.title" class="work-card" :href="work.link">
-          <div class="work-thumb" :style="{ background: work.thumbGradient }"></div>
+          <div class="work-thumb" :style="{ background: work.thumbGradient }">
+            <img :src="work.icon">
+          </div>
           <div class="work-info">
             <h3 class="work-title">{{ work.title }}</h3>
             <p class="work-desc">{{ work.desc }}</p>
@@ -86,7 +88,9 @@
       <h3 class="section-sub">哪个地方可以找到我</h3>
       <div class="contacts-grid">
         <a v-for="contact in Contacts" :key="contact.title" class="work-card" :href="contact.link">
-          <!-- <div class="work-thumb" :style="{ background: contact.thumbGradient }"></div> -->
+          <div class="contact-thumb">
+            <img :src="contact.icon" alt="" />
+          </div>
           <div class="contact-info">
             <h3 class="contact-title">{{ contact.title }}</h3>
             <p class="contact-desc">{{ contact.desc }}</p>
@@ -97,7 +101,7 @@
 
     <!-- 底部 -->
     <footer>© 2026 食我压路</footer>
-
+    <footer>2026-08-04</footer>
     <MagicBox targets=".tech-card, .work-card, .contact-card,h1,h2,h3" />
   </div>
 </template>
@@ -110,6 +114,10 @@ import pythonIcon from '../assets/imgs/python.svg'
 import javascriptIcon from '../assets/imgs/JavaScript.svg'
 import javaIcon from '../assets/imgs/java.svg'
 import vueIcon from '../assets/imgs/Vue.svg'
+import bilibiliIcon from '../assets/imgs/哔哩哔哩.svg'
+import githubIcon from '../assets/imgs/github-fill.svg'
+import wurstIcon from '../assets/imgs/works/Wurst.png'
+import meteorIcon from '../assets/imgs/works/Meteor.png'
 
 export default {
   name: 'HomePage',
@@ -171,46 +179,58 @@ export default {
       works: [
         {
           title: '个人博客',
+          icon: vueIcon,
           desc: '基于 Vue 3 的个人主页与作品展示',
           tags: ['Vue', 'Vite', 'TS'],
           thumbGradient: 'linear-gradient(135deg, #23232e, #3a3a4d)',
           link: '#',
         },
         {
-          title: 'WurstCN',
+          title: 'WurstCN[归档]',
+          icon: wurstIcon,
           desc: '对MiencraftMod的汉化以及相关优化',
           tags: ['Java'],
           thumbGradient: 'linear-gradient(135deg, #262b26, #39463a)',
-          link: '#',
+          link: 'https://github.com/dingzhen-vape/WurstCN',
         },
         {
-          title: 'MeteorCN',
+          title: 'MeteorCN[归档]',
+          icon: meteorIcon,
           desc: 'MeteorMod的汉化以及字体修复',
           tags: ['Java'],
           thumbGradient: 'linear-gradient(135deg, #2b2626, #463939)',
-          link: '#',
+          link: 'https://github.com/dingzhen-vape/MeteorCN',
         },
         {
           title: 'Wurst-I18n-Plugin',
+          icon: wurstIcon,
           desc: '使用java实现的WurstMod汉化插件',
           tags: ['Java'],
           thumbGradient: 'linear-gradient(135deg, #26262e, #373e4d)',
-          link: '#',
+          link: 'https://github.com/dingzhen-vape/WurstI18nPlusPlugin',
         },
         {
           title: 'Meteor-I18n-Plugin',
+          icon: meteorIcon,
           desc: '使用java实现的MeteorMod汉化插件',
           tags: ['Java'],
           thumbGradient: 'linear-gradient(135deg, #26262e, #373e4d)',
-          link: '#',
+          link: 'https://github.com/dingzhen-vape/Meteor-I18n-Support-plugin',
         },
       ],
       Contacts: [
         {
-          title:"BiliBili",
-          desc:"B站账号",
+          title:"Bilibili",
+          icon: bilibiliIcon,
+          desc:"B站主页",
           link:"https://space.bilibili.com/432060575",
-        }
+        },
+        {
+          title:"Github",
+          icon: githubIcon,
+          desc:"github主页",
+          link:"https://github.com/dingzhen-vape?tab=repositories",
+        },
       ]
     }
   },
