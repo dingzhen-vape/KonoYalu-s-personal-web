@@ -1,10 +1,12 @@
 <script lang="ts">
 import HomePage from './components/HomePage.vue'
+import CustomCursor from './components/CustomCursor.vue'
 import axios from 'axios'
 import gsap from 'gsap';
 export default {
   components: {
     HomePage,
+    CustomCursor,
   },
   data() {
     return {
@@ -74,4 +76,5 @@ async function getDailyWallpaper() {
       <p>加载中</p>
     </div>
   </Transition>
+  <CustomCursor />
 </template>

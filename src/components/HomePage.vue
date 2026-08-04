@@ -15,7 +15,7 @@
     <section id="Home">
       <div class="hero-vertical">作品集 · 二〇二六</div>
       <h1 class="hero-name">食我压路</h1>
-      <p class="hero-sub">把想法做成东西的人，前端开发爱好者</p>
+      <p class="hero-sub">人，编程爱好者</p>
       <div class="hero-actions">
         <a href="#Works" class="btn-primary">查看作品</a>
         <a href="#About" class="btn-ghost">关于我</a>
@@ -88,7 +88,7 @@
       <h3 class="section-sub">哪个地方可以找到我</h3>
       <div class="contacts-grid">
         <a v-for="contact in Contacts" :key="contact.title" class="work-card" :href="contact.link">
-          <div class="contact-thumb">
+          <div class="contact-thumb" style="background-image: linear-gradient(135deg, #23232e, #3a3a4d)">
             <img :src="contact.icon" alt="" />
           </div>
           <div class="contact-info">
@@ -100,8 +100,7 @@
     </section>
 
     <!-- 底部 -->
-    <footer>© 2026 食我压路</footer>
-    <footer>2026-08-04</footer>
+    <footer>© 2026 食我压路 Written at 2026-08-04</footer>
     <MagicBox targets=".tech-card, .work-card, .contact-card,h1,h2,h3" />
   </div>
 </template>
