@@ -2,6 +2,7 @@
 @import './Works.css';
 @import './TechStack.css';
 @import './Loading.css';
+@import './Contacts.css';
 
 :root {
   --overlay-color: rgba(10, 10, 15, 0.85);
@@ -111,6 +112,27 @@ a {
 }
 
 .section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  background: var(--accent);
+}
+
+.section-sub {
+  font-size: 16px;
+  color: var(--text-sub);
+  font-weight:lighter;
+  letter-spacing: 4px;
+  margin-top: -48px;
+  margin-bottom: 48px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.section-sub::before{
   content: '';
   position: absolute;
   left: 0;

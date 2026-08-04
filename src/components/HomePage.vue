@@ -80,6 +80,21 @@
       </div>
     </section>
 
+    <!-- 联系方式 -->
+    <section id="Contacts">
+      <h2 class="section-title">联系方式</h2>
+      <h3 class="section-sub">哪个地方可以找到我</h3>
+      <div class="contacts-grid">
+        <a v-for="contact in Contacts" :key="contact.title" class="work-card" :href="contact.link">
+          <!-- <div class="work-thumb" :style="{ background: contact.thumbGradient }"></div> -->
+          <div class="contact-info">
+            <h3 class="contact-title">{{ contact.title }}</h3>
+            <p class="contact-desc">{{ contact.desc }}</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
     <!-- 底部 -->
     <footer>© 2026 食我压路</footer>
   </div>
@@ -177,6 +192,13 @@ export default {
           link: '#',
         },
       ],
+      Contacts: [
+        {
+          title:"BiliBili",
+          desc:"B站账号",
+          link:"https://space.bilibili.com/432060575",
+        }
+      ]
     }
   },
   computed: {
