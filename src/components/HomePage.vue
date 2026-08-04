@@ -97,10 +97,13 @@
 
     <!-- 底部 -->
     <footer>© 2026 食我压路</footer>
+
+    <MagicBox targets=".tech-card, .work-card, .contact-card,h1,h2,h3" />
   </div>
 </template>
 
 <script lang="ts">
+import MagicBox from './MagicBox.vue'
 import cplusplusIcon from '../assets/imgs/cplusplus.svg'
 import csharpIcon from '../assets/imgs/Csharp2.svg'
 import pythonIcon from '../assets/imgs/python.svg'
@@ -110,6 +113,9 @@ import vueIcon from '../assets/imgs/Vue.svg'
 
 export default {
   name: 'HomePage',
+  components: {
+    MagicBox,
+  },
   data() {
     return {
       TechStack: [
@@ -171,23 +177,30 @@ export default {
           link: '#',
         },
         {
-          title: '命令行工具',
-          desc: '用 Python 编写的小型自动化脚本工具',
-          tags: ['Python'],
+          title: 'WurstCN',
+          desc: '对MiencraftMod的汉化以及相关优化',
+          tags: ['Java'],
           thumbGradient: 'linear-gradient(135deg, #262b26, #39463a)',
           link: '#',
         },
         {
-          title: '桌面应用',
-          desc: 'Java 编写的桌面小工具（示例项目）',
+          title: 'MeteorCN',
+          desc: 'MeteorMod的汉化以及字体修复',
           tags: ['Java'],
           thumbGradient: 'linear-gradient(135deg, #2b2626, #463939)',
           link: '#',
         },
         {
-          title: 'Windows 工具',
-          desc: '基于 C# 的实用小工具（示例项目）',
-          tags: ['C#', '.NET'],
+          title: 'Wurst-I18n-Plugin',
+          desc: '使用java实现的WurstMod汉化插件',
+          tags: ['Java'],
+          thumbGradient: 'linear-gradient(135deg, #26262e, #373e4d)',
+          link: '#',
+        },
+        {
+          title: 'Meteor-I18n-Plugin',
+          desc: '使用java实现的MeteorMod汉化插件',
+          tags: ['Java'],
           thumbGradient: 'linear-gradient(135deg, #26262e, #373e4d)',
           link: '#',
         },
