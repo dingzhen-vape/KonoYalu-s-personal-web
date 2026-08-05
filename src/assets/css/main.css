@@ -154,9 +154,20 @@ a {
   color: var(--text-sub);
   font-weight:lighter;
   letter-spacing: 4px;
-  margin-top: -48px;
+  margin-top: -40px;
   margin-bottom: 48px;
   position: relative;
+  padding-left: 20px;
+}
+
+/* 英文副标题：标题下方的小字（与 section-sub 同风格、无金色竖线） */
+.section-en {
+  font-size: 13px;
+  letter-spacing: 6px;
+  color: var(--text-sub);
+  opacity: 0.7;
+  margin-top: -36px;
+  margin-bottom: 48px;
   padding-left: 20px;
 }
 

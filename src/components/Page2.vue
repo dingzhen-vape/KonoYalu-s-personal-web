@@ -26,12 +26,13 @@
     <!-- 关于我 -->
     <section id="About">
       <h2 class="section-title">关于我</h2>
+      <p class="section-en">ABOUT ME</p>
       <div class="about-body">
         <div class="avatar">
           <img src="../assets/imgs/Snipaste_2026-08-04_01-24-43.png" />
         </div>
         <div class="about-text">
-          <p>Hello!这里是YALU,很高兴你能查看这个没什么用的网页awa</p>
+          <p>Hello!这里是YALU ISFP,很高兴你能查看这个没什么用的网页awa</p>
           <p>一个福瑞画师(对),从23年11月开始学习</p>
           <p>截止至2026年8月6日,我现在正在学习光影渲染,结构刻画以及材质 背景的绘制(好难(sad))</p>
           <p>⬅️你能看到我的头像也是我自己画的(画的是Deltarune的Raisei)</p>
@@ -43,6 +44,7 @@
     <!-- 作品集 -->
     <section id="Works">
       <h2 class="section-title">作品集</h2>
+      <p class="section-en">GALLERY</p>
       <div class="works-grid">
         <a v-for="work in works" :key="work.title" class="work-card" :href="work.link">
           <div class="work-thumb" style="background: linear-gradient(135deg, #23232e, #3a3a4d)">
@@ -63,7 +65,8 @@
     <!-- 联系方式 -->
     <section id="Contacts">
       <h2 class="section-title">联系方式</h2>
-      <h3 class="section-sub">哪个地方可以找到我</h3>
+      <p class="section-en">CONTACT</p>
+      <!-- <h3 class="section-sub">Where you can find me</h3> -->
       <div class="contacts-grid">
         <a v-for="contact in Contacts" :key="contact.title" class="work-card" :href="contact.link">
           <div
@@ -115,28 +118,28 @@ export default {
           title: '示例作品一',
           icon: '',
           desc: '占位描述：这里写这幅画的简介',
-          link: '',
+          link: '#',
           tags: ['插画', '示例'],
         },
         {
           title: '示例作品二',
           icon: '',
           desc: '占位描述：光影渲染练习',
-          link: '',
+          link: '#',
           tags: ['光影'],
         },
         {
           title: '示例作品三',
           icon: '',
           desc: '占位描述：结构刻画练习',
-          link: '',
+          link: '#',
           tags: ['结构'],
         },
         {
           title: '示例作品四',
           icon: '',
           desc: '占位描述：材质与背景练习',
-          link: '',
+          link: '#',
           tags: ['材质'],
         },
       ],

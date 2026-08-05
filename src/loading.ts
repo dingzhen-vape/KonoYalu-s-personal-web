@@ -6,18 +6,29 @@
 // ============================================================
 
 import { ref } from 'vue'
+import { uselessTips } from './assets/ts/UselessTips'
 
 // 是否显示加载遮罩（初始为 true：首屏加载期间遮罩已显示）
 export const isLoading = ref(true)
 
 // 遮罩开始显示的时刻（毫秒时间戳），用于计算最短停留时长
-export const loadingStart = ref(0)
+// 初始即设为模块加载时刻：首屏不走 showLoading()，必须从加载就开始计时
+export const loadingStart = ref(Date.now())
+
+// 当前要显示的随机 tip（初始化抽一条，首屏加载也有内容）
+export const currentTip = ref(pickRandomTip())
+
+// 随机抽取一条 tip（带空数组保护）
+function pickRandomTip() {
+  return uselessTips[Math.floor(Math.random() * uselessTips.length)] ?? ''
+}
 
 /**
  * 显示加载遮罩：重置计时起点并置 isLoading 为 true
  * 由路由 beforeEach 在页面切换前调用
  */
 export function showLoading() {
+  currentTip.value = pickRandomTip()
   loadingStart.value = Date.now()
   isLoading.value = true
 }
@@ -29,7 +40,7 @@ export function showLoading() {
 export function finishLoading() {
   if (!isLoading.value) return
   const elapsed = Date.now() - loadingStart.value
-  const remaining = Math.max(0, 500 - elapsed)
+  const remaining = Math.max(0, 1000 - elapsed)
   setTimeout(() => {
     isLoading.value = false
   }, remaining)

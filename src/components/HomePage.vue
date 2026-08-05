@@ -27,6 +27,7 @@
     <!-- 关于我 -->
     <section id="About">
       <h2 class="section-title">关于我</h2>
+      <p class="section-en">ABOUT ME</p>
       <div class="about-body">
         <div class="avatar">
           <img src="../assets/imgs/Snipaste_2026-08-04_01-24-43.png" />
@@ -42,6 +43,7 @@
     <!-- 技术栈 -->
     <section id="TechStack">
       <h2 class="section-title">技术栈</h2>
+      <p class="section-en">TECH STACK</p>
       <div id="TechDisplay">
         <a v-for="tech in sortedTechStack" :key="tech.name" class="tech-card" :href="tech.link">
           <div class="tech-thumb" :style="{ background: tech.thumbGradient }">
@@ -62,6 +64,7 @@
     <!-- 作品集 -->
     <section id="Works">
       <h2 class="section-title">作品集</h2>
+      <p class="section-en">WORKS</p>
       <div class="works-grid">
         <a v-for="work in works" :key="work.title" class="work-card" :href="work.link">
           <div class="work-thumb" :style="{ background: work.thumbGradient }">
@@ -82,7 +85,8 @@
     <!-- 联系方式 -->
     <section id="Contacts">
       <h2 class="section-title">联系方式</h2>
-      <h3 class="section-sub">哪个地方可以找到我</h3>
+      <p class="section-en">CONTACTS</p>
+      <!-- <h3 class="section-sub">Where you can find me</h3> -->
       <div class="contacts-grid">
         <a v-for="contact in Contacts" :key="contact.title" class="work-card" :href="contact.link">
           <div

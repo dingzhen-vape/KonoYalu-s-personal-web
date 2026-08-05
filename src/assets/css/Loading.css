@@ -31,6 +31,16 @@
   clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
 }
 
+/* 加载界面随机提示文字（h1 大小，层内 flex 居中，随黑层滑入滑出） */
+.loading-tip {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: bold;
+  letter-spacing: 4px;
+  color: var(--text-sub);
+  text-align: center;
+  padding: 0 24px;
+}
+
 /* ---------- 金色遮罩层（在黑色层之下） ---------- */
 .loading-overlay-ORANGE {
   position: fixed;
