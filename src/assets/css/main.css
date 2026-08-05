@@ -1,27 +1,38 @@
+/* ============================================================
+   全局主样式表（main.css）
+   - 汇总引入各板块样式：Hero / Works / TechStack / Loading / Contacts
+   - 定义全局 CSS 变量（配色主题）
+   - 全局基础样式：滚动条隐藏、字体、链接、背景层、导航栏、关于我、页脚
+   ============================================================ */
+
 @import './Hero.css';
 @import './Works.css';
 @import './TechStack.css';
 @import './Loading.css';
 @import './Contacts.css';
 
+/* ---------- 全局 CSS 变量（暗色主题配色） ---------- */
 :root {
-  --overlay-color: rgba(10, 10, 15, 0.85);
-  --surface: #14141c;
-  --text-main: #f2f2f5;
-  --text-sub: #8b8b9b;
-  --accent: #d9b26a;
-  --border: rgba(242, 242, 245, 0.12);
+  --overlay-color: rgba(10, 10, 15, 0.85); /* 壁纸上的暗色遮罩 */
+  --surface: #14141c; /* 卡片/容器表面色 */
+  --text-main: #f2f2f5; /* 主文字（亮白） */
+  --text-sub: #8b8b9b; /* 次要文字（灰） */
+  --accent: #d9b26a; /* 强调色（金色） */
+  --accent-dark: rgb(204, 168, 84); /* 强调色深版（hover） */
+  --border: rgba(242, 242, 245, 0.12); /* 边框/分割线 */
 }
 
+/* ---------- 隐藏滚动条（保留滚动功能） ---------- */
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
 html {
-  scrollbar-width: none;          /* Firefox */
-  -ms-overflow-style: none;       /* 旧版 Edge/IE */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* 旧版 Edge/IE */
 }
 
+/* ---------- 全局重置 ---------- */
 * {
   margin: 0;
   padding: 0;
@@ -29,7 +40,7 @@ html {
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* 锚点跳转平滑滚动 */
 }
 
 body {
@@ -38,6 +49,7 @@ body {
   background: #0a0a0f;
 }
 
+/* 自定义光标挂载时隐藏系统光标（由 CustomCursor.vue 控制 body class） */
 .has-custom-cursor,
 .has-custom-cursor * {
   cursor: none !important;
@@ -48,17 +60,18 @@ a {
   text-decoration: none;
 }
 
+/* ---------- 背景层：Bing 壁纸 + 暗色遮罩 ---------- */
 .bg-wrap {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -1; /* 置于页面内容之下 */
 }
 
 .bg-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(10px) brightness(0.8);
+  filter: blur(10px) brightness(0.8); /* 模糊 + 压暗，突出前景内容 */
   transition: filter 0.25s ease;
 }
 
@@ -197,7 +210,7 @@ a {
   font-size: 18px;
 }
 
-/* 底部 */
+/* ---------- 页脚 ---------- */
 footer {
   padding: 32px 0;
   text-align: center;
@@ -206,8 +219,21 @@ footer {
   border-top: 1px solid var(--border);
 }
 
-#another{
-  background-color: var(--surface);
+/* ---------- 导航栏特殊项（金色胶囊按钮，跳转另一页面） ---------- */
+#another {
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: var(--accent);
+  transition: transform 0.25s ease;
+}
+
+#another:hover {
+  transform: scale(1.1); /* hover 放大一点 */
+}
+
+#another a {
+  color: #000; /* 金色背景上配深色文字 */
+  font-weight: bold;
 }
 
 

@@ -17,7 +17,7 @@
     <section id="Home">
       <div class="hero-vertical">作品集 · 二〇二六</div>
       <h1 class="hero-name">食我压路</h1>
-      <p class="hero-sub">编程爱好者</p>
+      <p class="hero-sub">臭玩电脑的</p>
       <div class="hero-actions">
         <a href="#Works" class="btn-primary">查看作品</a>
         <a href="#About" class="btn-ghost">关于我</a>
@@ -29,11 +29,11 @@
       <h2 class="section-title">关于我</h2>
       <div class="about-body">
         <div class="avatar">
-          <img src="../assets/imgs/Snipaste_2026-08-04_01-24-43.png">
+          <img src="../assets/imgs/Snipaste_2026-08-04_01-24-43.png" />
         </div>
         <div class="about-text">
-          <p>这里是食我压路，一个对编程充满热情的开发者</p>
-          <p>享受从零搭建的过程，享受编程带来的乐趣,愿意不断学习新的事物</p>
+          <p>这里是食我压路,一个对编程充满热情的开发者</p>
+          <p>享受从零搭建的过程,享受编程带来的乐趣,愿意不断学习新的事物</p>
           <p>目前正在研究 UnityMod制作 MinecraftMod开发 前端网页开发 等方向</p>
         </div>
       </div>
@@ -43,12 +43,7 @@
     <section id="TechStack">
       <h2 class="section-title">技术栈</h2>
       <div id="TechDisplay">
-        <a
-          v-for="tech in sortedTechStack"
-          :key="tech.name"
-          class="tech-card"
-          :href="tech.link"
-        >
+        <a v-for="tech in sortedTechStack" :key="tech.name" class="tech-card" :href="tech.link">
           <div class="tech-thumb" :style="{ background: tech.thumbGradient }">
             <img :src="tech.icon" alt="" />
           </div>
@@ -70,12 +65,12 @@
       <div class="works-grid">
         <a v-for="work in works" :key="work.title" class="work-card" :href="work.link">
           <div class="work-thumb" :style="{ background: work.thumbGradient }">
-            <img :src="work.icon">
+            <img :src="work.icon" />
           </div>
           <div class="work-info">
             <h3 class="work-title">{{ work.title }}</h3>
             <p class="work-desc">{{ work.desc }}</p>
-            
+
             <div class="work-tags">
               <span v-for="tag in work.tags" :key="tag" class="work-tag">{{ tag }}</span>
             </div>
@@ -90,7 +85,10 @@
       <h3 class="section-sub">哪个地方可以找到我</h3>
       <div class="contacts-grid">
         <a v-for="contact in Contacts" :key="contact.title" class="work-card" :href="contact.link">
-          <div class="contact-thumb" style="background-image: linear-gradient(135deg, #23232e, #3a3a4d)">
+          <div
+            class="contact-thumb"
+            style="background-image: linear-gradient(135deg, #23232e, #3a3a4d)"
+          >
             <img :src="contact.icon" alt="" />
           </div>
           <div class="contact-info">
@@ -108,15 +106,26 @@
 </template>
 
 <script lang="ts">
+// ============================================================
+// HomePage.vue — 主页（开发者作品集）
+// 板块：导航栏 / Hero 首屏 / 关于我 / 技术栈 / 作品集 / 联系方式 / 底部
+// 数据：TechStack（技术栈）、works（作品）、Contacts（联系方式）
+// 组件：MagicBox（金色四角高亮框，悬停卡片时自动框住）
+// ============================================================
+
+// MagicBox：悬停时自动框住卡片的四角高亮框组件
 import MagicBox from './MagicBox.vue'
+// 技术栈图标（本地 SVG）
 import cplusplusIcon from '../assets/imgs/cplusplus.svg'
 import csharpIcon from '../assets/imgs/Csharp2.svg'
 import pythonIcon from '../assets/imgs/python.svg'
 import javascriptIcon from '../assets/imgs/JavaScript.svg'
 import javaIcon from '../assets/imgs/java.svg'
 import vueIcon from '../assets/imgs/Vue.svg'
+// 联系方式图标（本地 SVG）
 import bilibiliIcon from '../assets/imgs/哔哩哔哩.svg'
 import githubIcon from '../assets/imgs/github-fill.svg'
+// 作品缩略图（Minecraft Mod 汉化项目图标）
 import wurstIcon from '../assets/imgs/works/Wurst.png'
 import meteorIcon from '../assets/imgs/works/Meteor.png'
 
@@ -127,10 +136,11 @@ export default {
   },
   data() {
     return {
+      // ---------- 技术栈（level 为熟练度，展示时按降序排列） ----------
       TechStack: [
         {
           name: 'C++',
-          desc: '面向对象编程，算法与底层开发',
+          desc: '面向对象编程,算法与底层开发',
           icon: cplusplusIcon,
           level: 5,
           thumbGradient: 'linear-gradient(135deg, #23232e, #3a3a4d)',
@@ -170,13 +180,14 @@ export default {
         },
         {
           name: 'Vue',
-          desc: '渐进式前端框架，本博客就是用它构建的',
+          desc: '渐进式前端框架,本博客就是用它构建的',
           icon: vueIcon,
           level: 70,
           thumbGradient: 'linear-gradient(135deg, #23302e, #3d6b5e)',
           link: '#',
         },
       ],
+      // ---------- 作品集（icon 为缩略图，link 跳转 GitHub 仓库） ----------
       works: [
         {
           title: '个人博客',
@@ -219,23 +230,25 @@ export default {
           link: 'https://github.com/dingzhen-vape/Meteor-I18n-Support-plugin',
         },
       ],
+      // ---------- 联系方式（点击卡片跳转外部链接） ----------
       Contacts: [
         {
-          title:"Bilibili",
+          title: 'Bilibili',
           icon: bilibiliIcon,
-          desc:"B站主页",
-          link:"https://space.bilibili.com/432060575",
+          desc: 'B站主页',
+          link: 'https://space.bilibili.com/432060575',
         },
         {
-          title:"Github",
+          title: 'Github',
           icon: githubIcon,
-          desc:"github主页",
-          link:"https://github.com/dingzhen-vape?tab=repositories",
+          desc: 'github主页',
+          link: 'https://github.com/dingzhen-vape?tab=repositories',
         },
-      ]
+      ],
     }
   },
   computed: {
+    // 技术栈按熟练度降序排列（展示时最熟的排前面）
     sortedTechStack() {
       return [...this.TechStack].sort((a, b) => b.level - a.level)
     },

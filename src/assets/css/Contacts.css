@@ -1,15 +1,23 @@
+/* ============================================================
+   Contacts.css — 联系方式板块（#Contacts）样式
+   包含：标题区、卡片网格、联系卡片（图标缩略图 + 标题 + 描述）
+   说明：卡片本体复用 .work-card 样式（见 Works.css）
+   ============================================================ */
+
 #Contacts {
   max-width: 960px;
   margin: 0 auto;
   padding: 120px 48px;
 }
 
+/* 联系卡片网格：两列等宽 */
 .contacts-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 28px;
 }
 
+/* 联系卡片：竖排布局（复用作品卡片的视觉风格） */
 .contact-card {
   display: flex;
   flex-direction: column;
@@ -27,6 +35,7 @@
   transform: translateY(-4px);
 }
 
+/* 图标缩略图区域：渐变背景、图标居中 */
 .contact-thumb {
   aspect-ratio: 16 / 9;
   display: flex;
@@ -34,12 +43,14 @@
   justify-content: center;
 }
 
+/* 联系图标：固定尺寸、等比缩放不拉伸 */
 .contact-thumb img {
   width: 48px;
   height: 48px;
   object-fit: contain;
 }
 
+/* 信息区 */
 .contact-info {
   padding: 24px;
   display: flex;
@@ -70,6 +81,6 @@
   }
 
   .works-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 小屏改单列 */
   }
 }

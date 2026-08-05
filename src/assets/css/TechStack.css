@@ -1,4 +1,10 @@
-#TechStack{
+/* ============================================================
+   TechStack.css — 技术栈板块（#TechStack）样式
+   包含：卡片列表、图标、名称/描述、熟练度进度条
+   展示顺序由 HomePage.vue 的 sortedTechStack 按熟练度降序决定
+   ============================================================ */
+
+#TechStack {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -8,12 +14,14 @@
   padding: 120px 48px;
 }
 
+/* 技术卡片容器：横向换行排列 */
 #TechDisplay {
   display: flex;
   flex-wrap: wrap;
   gap: 28px;
 }
 
+/* 技术卡片：竖排布局，与作品卡片同风格 */
 .tech-card {
   display: flex;
   flex-direction: column;
@@ -31,6 +39,7 @@
   transform: translateY(-4px);
 }
 
+/* 图标区：渐变背景、图标居中 */
 .tech-thumb {
   aspect-ratio: 16 / 9;
   display: flex;
@@ -38,11 +47,13 @@
   justify-content: center;
 }
 
+/* 技术图标：固定尺寸 */
 .tech-thumb img {
   width: 48px;
   height: 48px;
 }
 
+/* 信息区 */
 .tech-info {
   padding: 24px;
   display: flex;
@@ -66,27 +77,23 @@
   line-height: 1.7;
 }
 
+/* 熟练度进度条：底部灰色轨道 */
 .tech-proficiency {
   border-radius: 5px;
   height: 6px;
   background: rgba(242, 242, 245, 0.12);
 }
 
+/* 熟练度填充：金色部分，宽度由 data 的 level 控制 */
 .tech-proficiency-fill {
   border-radius: 5px;
   height: 6px;
   background-color: var(--accent);
 }
 
+/* 熟练度百分比文字 */
 .tech-proficiency-level {
   font-size: 12px;
   color: var(--text-sub);
   letter-spacing: 1px;
-}
-
-.tech-proficiency-fill p{
-  font-size: 12px;
-  top:50px;
-  color: var(--text-sub);
-  margin-top: 4px;
 }

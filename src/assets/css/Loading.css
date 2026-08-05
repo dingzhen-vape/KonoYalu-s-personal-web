@@ -1,15 +1,24 @@
+/* ============================================================
+   Loading.css — 加载遮罩动画（金/黑双层斜切滑入滑出）
+   时序（配合 router/index.ts 的守卫）：
+   进入：金层先滑入 → 黑层延迟后滑入盖住（黑层在上）
+   离开：黑层先滑走 → 金层延迟后滑走露出页面
+   形状：clip-path 裁剪为向右倒的平行四边形（斜切）
+   注意：层宽超出视口两侧，保证斜切后仍完全覆盖屏幕
+   ============================================================ */
+
 :root {
-  --duration: 0.5s;
+  --duration: 0.5s; /* 单层滑动时长（与路由守卫等待时间耦合） */
   --accent: #d9b26a;
-  --delay:0.1s;
+  --delay: 0.1s; /* 两层之间的交错延迟 */
 }
 
-/* 加载动画 */
+/* ---------- 黑色遮罩层（在上层） ---------- */
 .loading-overlay-BLACK {
   position: fixed;
   top: 0;
   bottom: 0;
-  left: -10%;
+  left: -10%; /* 左右各超出视口：斜切后仍完全覆盖 */
   right: -10%;
   z-index: 101;
   display: flex;
@@ -18,8 +27,11 @@
   justify-content: center;
   gap: 24px;
   background: #0a0a0f;
+  /* 向右倒的平行四边形：顶边右偏、底边左偏 */
   clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
 }
+
+/* ---------- 金色遮罩层（在黑色层之下） ---------- */
 .loading-overlay-ORANGE {
   position: fixed;
   top: 0;
@@ -35,70 +47,49 @@
   background: var(--accent);
   clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
 }
-/* 
-.spinner {
-  width: 40px;
-  height: 40px;
-  position: relative;
-}
-.spinner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 5px solid rgba(217, 178, 106, 0.2);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-} */
 
-/* .loading-overlay p {
-  font-size: 14px;
-  letter-spacing: 4px;
-  color: var(--text-sub);
-} */
+/* ============================================================
+   过渡动画（Vue <Transition> 类名）
+   fade-up  = 黑色层：后进入、先离开（enter 带延迟等金层先入）
+   fade-down = 金色层：先进入、后离开（leave 带延迟等黑层先走）
+   ============================================================ */
 
-/* @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-} */
-
-/* 黑色层：后进入、先离开 */
+/* 黑色层进入：延迟等金层滑入后再动 */
 .fade-up-enter-active {
   transition: transform var(--duration) ease-in-out var(--delay);
 }
 
+/* 黑色层起始位置：视口左侧外 */
 .fade-up-enter-from {
   transform: translateX(-100%);
 }
 
+/* 黑色层离开：立即滑出（不加延迟） */
 .fade-up-leave-active {
   transition: transform var(--duration) ease-in-out;
 }
 
+/* 黑色层离开终点：视口右侧外 */
 .fade-up-leave-to {
   transform: translateX(100%);
 }
 
-/* 金色层：先进入、后离开 */
+/* 金色层进入：立即滑入 */
 .fade-down-enter-active {
   transition: transform var(--duration) ease-in-out;
 }
 
+/* 金色层起始位置：视口左侧外 */
 .fade-down-enter-from {
   transform: translateX(-100%);
 }
 
+/* 金色层离开：延迟等黑层先滑走 */
 .fade-down-leave-active {
   transition: transform var(--duration) ease-in-out var(--delay);
 }
 
+/* 金色层离开终点：视口右侧外 */
 .fade-down-leave-to {
   transform: translateX(100%);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .spinner {
-    animation: none;
-  }
 }

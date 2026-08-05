@@ -1,15 +1,23 @@
+/* ============================================================
+   Works.css — 作品集板块（#Works）样式
+   包含：两列卡片网格、卡片（缩略图+标题+描述+标签）
+   说明：联系方式卡片（Contacts 板块）也复用了 .work-card 样式
+   ============================================================ */
+
 #Works {
   max-width: 960px;
   margin: 0 auto;
   padding: 120px 48px;
 }
 
+/* 作品卡片网格：两列等宽 */
 .works-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 28px;
 }
 
+/* 卡片：竖排布局（缩略图在上、信息在下） */
 .work-card {
   display: flex;
   flex-direction: column;
@@ -23,10 +31,11 @@
 }
 
 .work-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
+  border-color: var(--accent); /* hover 边框变金 */
+  transform: translateY(-4px); /* hover 上浮 */
 }
 
+/* 缩略图区域：固定宽高比、内容居中 */
 .work-thumb {
   overflow: hidden;
   aspect-ratio: 16 / 9;
@@ -35,11 +44,13 @@
   justify-content: center;
 }
 
-.work-thumb img{
+/* 缩略图内部图片：缩小比例展示（图标类素材避免撑满） */
+.work-thumb img {
   scale: 0.3;
   object-fit: cover;
 }
 
+/* 信息区：标题 + 描述 + 标签 */
 .work-info {
   padding: 24px;
   display: flex;
@@ -54,7 +65,7 @@
 }
 
 .work-card:hover .work-title {
-  color: var(--accent);
+  color: var(--accent); /* hover 标题变金 */
 }
 
 .work-desc {
@@ -63,6 +74,7 @@
   line-height: 1.7;
 }
 
+/* 标签行：可换行的小徽章 */
 .work-tags {
   display: flex;
   gap: 8px;
@@ -70,6 +82,7 @@
   margin-top: 4px;
 }
 
+/* 单个标签：金色描边小字 */
 .work-tag {
   font-size: 12px;
   color: var(--accent);
@@ -86,6 +99,6 @@
   }
 
   .works-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 小屏改单列 */
   }
 }

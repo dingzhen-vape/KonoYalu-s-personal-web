@@ -2,11 +2,10 @@
   <div class="home-page">
     <!-- 导航栏 -->
     <nav id="NavBar">
-      <div class="nav-brand">食我压路</div>
+      <div class="nav-brand">KONO_YALU</div>
       <ul class="nav-links">
-        <li><a herf="#Home">主页</a></li>
+        <li><a href="#Home">主页</a></li>
         <li><a href="#About">关于</a></li>
-        <li><a href="#TechStack">技术栈</a></li>
         <li><a href="#Works">作品</a></li>
         <li><a href="#Contacts">联系方式</a></li>
         <li id="another"><router-link to="/">除此之外</router-link></li>
@@ -16,7 +15,7 @@
     <!-- Hero 首屏 -->
     <section id="Home">
       <div class="hero-vertical">作品集 · 二〇二六</div>
-      <h1 class="hero-name">食我压路</h1>
+      <h1 class="hero-name">KONO_YALU</h1>
       <p class="hero-sub">绘画爱好者</p>
       <div class="hero-actions">
         <a href="#Works" class="btn-primary">查看作品</a>
@@ -29,38 +28,15 @@
       <h2 class="section-title">关于我</h2>
       <div class="about-body">
         <div class="avatar">
-          <img src="../assets/imgs/Snipaste_2026-08-04_01-24-43.png">
+          <img src="../assets/imgs/Snipaste_2026-08-04_01-24-43.png" />
         </div>
         <div class="about-text">
-          <p>这里是食我压路，一个对编程充满热情的开发者</p>
-          <p>享受从零搭建的过程，享受编程带来的乐趣,愿意不断学习新的事物</p>
-          <p>目前正在研究 UnityMod制作 MinecraftMod开发 前端网页开发 等方向</p>
+          <p>Hello!这里是YALU,很高兴你能查看这个没什么用的网页awa</p>
+          <p>一个福瑞画师(对),从23年11月开始学习</p>
+          <p>截止至2026年8月6日,我现在正在学习光影渲染,结构刻画以及材质 背景的绘制(好难(sad))</p>
+          <p>⬅️你能看到我的头像也是我自己画的(画的是Deltarune的Raisei)</p>
+          <p>额,欢迎扩列!</p>
         </div>
-      </div>
-    </section>
-
-    <!-- 技术栈 -->
-    <section id="TechStack">
-      <h2 class="section-title">技术栈</h2>
-      <div id="TechDisplay">
-        <a
-          v-for="tech in sortedTechStack"
-          :key="tech.name"
-          class="tech-card"
-          :href="tech.link"
-        >
-          <div class="tech-thumb" :style="{ background: tech.thumbGradient }">
-            <img :src="tech.icon" alt="" />
-          </div>
-          <div class="tech-info">
-            <h3 class="tech-name">{{ tech.name }}</h3>
-            <p class="tech-desc">{{ tech.desc }}</p>
-            <div class="tech-proficiency">
-              <div class="tech-proficiency-fill" :style="{ width: tech.level + '%' }"></div>
-            </div>
-            <span class="tech-proficiency-level">{{ tech.level }}%</span>
-          </div>
-        </a>
       </div>
     </section>
 
@@ -69,13 +45,13 @@
       <h2 class="section-title">作品集</h2>
       <div class="works-grid">
         <a v-for="work in works" :key="work.title" class="work-card" :href="work.link">
-          <div class="work-thumb" :style="{ background: work.thumbGradient }">
-            <img :src="work.icon">
+          <div class="work-thumb" style="background: linear-gradient(135deg, #23232e, #3a3a4d)">
+            <img v-if="work.icon" :src="work.icon" />
           </div>
           <div class="work-info">
             <h3 class="work-title">{{ work.title }}</h3>
             <p class="work-desc">{{ work.desc }}</p>
-            
+
             <div class="work-tags">
               <span v-for="tag in work.tags" :key="tag" class="work-tag">{{ tag }}</span>
             </div>
@@ -90,7 +66,10 @@
       <h3 class="section-sub">哪个地方可以找到我</h3>
       <div class="contacts-grid">
         <a v-for="contact in Contacts" :key="contact.title" class="work-card" :href="contact.link">
-          <div class="contact-thumb" style="background-image: linear-gradient(135deg, #23232e, #3a3a4d)">
+          <div
+            class="contact-thumb"
+            style="background-image: linear-gradient(135deg, #23232e, #3a3a4d)"
+          >
             <img :src="contact.icon" alt="" />
           </div>
           <div class="contact-info">
@@ -108,17 +87,20 @@
 </template>
 
 <script lang="ts">
+// ============================================================
+// Page2.vue — 画师作品集页（KONO_YALU，路由 /page2）
+// 板块：导航栏 / Hero 首屏 / 关于我 / 作品集 / 联系方式 / 底部
+// 数据：works（画作占位示例）、Contacts（B站小号/Pixiv/X/QQ）
+// 说明：与 HomePage 共用 main.css 全局样式（Hero/Works/Contacts 等）
+// ============================================================
+
+// MagicBox：悬停时自动框住卡片的四角高亮框组件
 import MagicBox from './MagicBox.vue'
-import cplusplusIcon from '../assets/imgs/cplusplus.svg'
-import csharpIcon from '../assets/imgs/Csharp2.svg'
-import pythonIcon from '../assets/imgs/python.svg'
-import javascriptIcon from '../assets/imgs/JavaScript.svg'
-import javaIcon from '../assets/imgs/java.svg'
-import vueIcon from '../assets/imgs/Vue.svg'
+// 联系方式图标（本地 SVG）
 import bilibiliIcon from '../assets/imgs/哔哩哔哩.svg'
-import githubIcon from '../assets/imgs/github-fill.svg'
-import wurstIcon from '../assets/imgs/works/Wurst.png'
-import meteorIcon from '../assets/imgs/works/Meteor.png'
+import XIcon from '../assets/imgs/x (1).svg'
+import PixivIcon from '../assets/imgs/Pixiv.svg'
+import QQIcon from '../assets/imgs/qq.svg'
 
 export default {
   name: 'HomePage',
@@ -127,118 +109,65 @@ export default {
   },
   data() {
     return {
-      TechStack: [
-        {
-          name: 'C++',
-          desc: '面向对象编程，算法与底层开发',
-          icon: cplusplusIcon,
-          level: 5,
-          thumbGradient: 'linear-gradient(135deg, #23232e, #3a3a4d)',
-          link: '#',
-        },
-        {
-          name: 'C#',
-          desc: '.NET 平台开发与应用',
-          icon: csharpIcon,
-          level: 10,
-          thumbGradient: 'linear-gradient(135deg, #262b3a, #3d4a6b)',
-          link: '#',
-        },
-        {
-          name: 'Python',
-          desc: '脚本编写与自动化处理',
-          icon: pythonIcon,
-          level: 80,
-          thumbGradient: 'linear-gradient(135deg, #262b26, #3d6b4a)',
-          link: '#',
-        },
-        {
-          name: 'JavaScript',
-          desc: '前端开发主力语言',
-          icon: javascriptIcon,
-          level: 50,
-          thumbGradient: 'linear-gradient(135deg, #2b2626, #6b4a3d)',
-          link: '#',
-        },
-        {
-          name: 'Java',
-          desc: '跨平台应用与后端开发',
-          icon: javaIcon,
-          level: 10,
-          thumbGradient: 'linear-gradient(135deg, #26262e, #4a3d6b)',
-          link: '#',
-        },
-        {
-          name: 'Vue',
-          desc: '渐进式前端框架，本博客就是用它构建的',
-          icon: vueIcon,
-          level: 70,
-          thumbGradient: 'linear-gradient(135deg, #23302e, #3d6b5e)',
-          link: '#',
-        },
-      ],
+      // ---------- 画作作品集（icon 填本地图片路径，link 可指向投稿页） ----------
       works: [
         {
-          title: '个人博客',
-          icon: vueIcon,
-          desc: '基于 Vue 3 的个人主页与作品展示',
-          tags: ['Vue', 'Vite', 'TS'],
-          thumbGradient: 'linear-gradient(135deg, #23232e, #3a3a4d)',
-          link: '#',
+          title: '示例作品一',
+          icon: '',
+          desc: '占位描述：这里写这幅画的简介',
+          link: '',
+          tags: ['插画', '示例'],
         },
         {
-          title: 'WurstCN[归档]',
-          icon: wurstIcon,
-          desc: '对MiencraftMod的汉化以及相关优化',
-          tags: ['Java'],
-          thumbGradient: 'linear-gradient(135deg, #262b26, #39463a)',
-          link: 'https://github.com/dingzhen-vape/WurstCN',
+          title: '示例作品二',
+          icon: '',
+          desc: '占位描述：光影渲染练习',
+          link: '',
+          tags: ['光影'],
         },
         {
-          title: 'MeteorCN[归档]',
-          icon: meteorIcon,
-          desc: 'MeteorMod的汉化以及字体修复',
-          tags: ['Java'],
-          thumbGradient: 'linear-gradient(135deg, #2b2626, #463939)',
-          link: 'https://github.com/dingzhen-vape/MeteorCN',
+          title: '示例作品三',
+          icon: '',
+          desc: '占位描述：结构刻画练习',
+          link: '',
+          tags: ['结构'],
         },
         {
-          title: 'Wurst-I18n-Plugin',
-          icon: wurstIcon,
-          desc: '使用java实现的WurstMod汉化插件',
-          tags: ['Java'],
-          thumbGradient: 'linear-gradient(135deg, #26262e, #373e4d)',
-          link: 'https://github.com/dingzhen-vape/WurstI18nPlusPlugin',
-        },
-        {
-          title: 'Meteor-I18n-Plugin',
-          icon: meteorIcon,
-          desc: '使用java实现的MeteorMod汉化插件',
-          tags: ['Java'],
-          thumbGradient: 'linear-gradient(135deg, #26262e, #373e4d)',
-          link: 'https://github.com/dingzhen-vape/Meteor-I18n-Support-plugin',
+          title: '示例作品四',
+          icon: '',
+          desc: '占位描述：材质与背景练习',
+          link: '',
+          tags: ['材质'],
         },
       ],
+      // ---------- 联系方式（点击卡片跳转外部链接） ----------
       Contacts: [
         {
-          title:"Bilibili",
+          title: 'Bilibili',
           icon: bilibiliIcon,
-          desc:"B站主页",
-          link:"https://space.bilibili.com/432060575",
+          desc: 'B站主页(我的小号)',
+          link: 'https://space.bilibili.com/3546601740044597?spm_id_from=333.1007.0.0',
         },
         {
-          title:"Github",
-          icon: githubIcon,
-          desc:"github主页",
-          link:"https://github.com/dingzhen-vape?tab=repositories",
+          title: 'Pixiv',
+          icon: PixivIcon,
+          desc: '蓝P的主页',
+          link: 'https://www.pixiv.net/users/64369758',
         },
-      ]
+        {
+          title: 'X',
+          icon: XIcon,
+          desc: '推特)',
+          link: 'https://x.com/KONO_YALU',
+        },
+        {
+          title: 'QQ',
+          icon: QQIcon,
+          desc: 'QQ群喵',
+          link: 'https://qm.qq.com/q/3obp1T4wus',
+        },
+      ],
     }
-  },
-  computed: {
-    sortedTechStack() {
-      return [...this.TechStack].sort((a, b) => b.level - a.level)
-    },
   },
 }
 </script>
