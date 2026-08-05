@@ -4,12 +4,12 @@
     <nav id="NavBar">
       <div class="nav-brand">食我压路</div>
       <ul class="nav-links">
-        <li><router-link to="/page2">主页</router-link></li>
+        <li><a herf="#Home">主页</a></li>
         <li><a href="#About">关于</a></li>
         <li><a href="#TechStack">技术栈</a></li>
         <li><a href="#Works">作品</a></li>
         <li><a href="#Contacts">联系方式</a></li>
-        <li id="another"><router-link to="/Page2">除此之外</router-link></li>
+        <li id="another"><router-link to="/">除此之外</router-link></li>
       </ul>
     </nav>
 
@@ -17,7 +17,7 @@
     <section id="Home">
       <div class="hero-vertical">作品集 · 二〇二六</div>
       <h1 class="hero-name">食我压路</h1>
-      <p class="hero-sub">编程爱好者</p>
+      <p class="hero-sub">绘画爱好者</p>
       <div class="hero-actions">
         <a href="#Works" class="btn-primary">查看作品</a>
         <a href="#About" class="btn-ghost">关于我</a>

@@ -1,16 +1,41 @@
+:root {
+  --duration: 0.5s;
+  --accent: #d9b26a;
+  --delay:0.1s;
+}
+
 /* 加载动画 */
-.loading-overlay {
+.loading-overlay-BLACK {
   position: fixed;
-  inset: 0;
-  z-index: 100;
+  top: 0;
+  bottom: 0;
+  left: -10%;
+  right: -10%;
+  z-index: 101;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 24px;
   background: #0a0a0f;
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
 }
-
+.loading-overlay-ORANGE {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -10%;
+  right: -10%;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  background: var(--accent);
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+}
+/* 
 .spinner {
   width: 40px;
   height: 40px;
@@ -23,30 +48,53 @@
   border: 5px solid rgba(217, 178, 106, 0.2);
   border-top-color: var(--accent);
   border-radius: 50%;
-  animation: spin 1s linear infinite; 
-}
+  animation: spin 1s linear infinite;
+} */
 
-
-.loading-overlay p {
+/* .loading-overlay p {
   font-size: 14px;
   letter-spacing: 4px;
   color: var(--text-sub);
-}
+} */
 
-@keyframes spin {
+/* @keyframes spin {
   to {
     transform: rotate(360deg);
   }
+} */
+
+/* 黑色层：后进入、先离开 */
+.fade-up-enter-active {
+  transition: transform var(--duration) ease-in-out var(--delay);
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1s ease;
+.fade-up-enter-from {
+  transform: translateX(-100%);
 }
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+.fade-up-leave-active {
+  transition: transform var(--duration) ease-in-out;
+}
+
+.fade-up-leave-to {
+  transform: translateX(100%);
+}
+
+/* 金色层：先进入、后离开 */
+.fade-down-enter-active {
+  transition: transform var(--duration) ease-in-out;
+}
+
+.fade-down-enter-from {
+  transform: translateX(-100%);
+}
+
+.fade-down-leave-active {
+  transition: transform var(--duration) ease-in-out var(--delay);
+}
+
+.fade-down-leave-to {
+  transform: translateX(100%);
 }
 
 @media (prefers-reduced-motion: reduce) {

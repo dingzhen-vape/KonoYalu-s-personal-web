@@ -1,11 +1,9 @@
 <script lang="ts">
-import HomePage from './components/HomePage.vue'
 import CustomCursor from './components/CustomCursor.vue'
 import axios from 'axios'
-import gsap from 'gsap';
+import gsap from 'gsap'
 export default {
   components: {
-    HomePage,
     CustomCursor,
   },
   data() {
@@ -15,35 +13,52 @@ export default {
       loadingStart: 0,
     }
   },
-  async created() {
-    this.loadingStart = Date.now()
-    this.DailyWallpaper = await getDailyWallpaper()
-    if (!this.DailyWallpaper) {
-      this.finishLoading()
-    }
+  created() {
+    this.showLoading()
   },
 
-  mounted() {
-    this.$nextTick(() =>{
-      gsap.fromTo(".spinner",
-        {
-          opacity: 0,
-          scale: 10,
-        },{
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          ease:"power4.out"
-        }
-      )
-    })
+  watch: {
+    '$route.path'() {
+      this.showLoading()
+    },
   },
 
   methods: {
+    // playSpinnerAnimation() {
+    //   gsap.fromTo(
+    //     '.spinner',
+    //     {
+    //       opacity: 0,
+    //       scale: 10,
+    //     },
+    //     {
+    //       opacity: 1,
+    //       scale: 1,
+    //       duration: 1,
+    //       ease: 'power4.out',
+    //     },
+    //   )
+    // },
+    showLoading() {
+      this.loadingStart = Date.now()
+      this.isLoading = true
+      // this.$nextTick(() => {
+      //   this.playSpinnerAnimation()
+      // })
+      if (this.DailyWallpaper) {
+        this.finishLoading()
+      } else {
+        this.loadWallpaper()
+      }
+    },
+    async loadWallpaper() {
+      this.DailyWallpaper = await getDailyWallpaper()
+      this.finishLoading()
+    },
     finishLoading() {
       if (!this.isLoading) return
       const elapsed = Date.now() - this.loadingStart
-      const remaining = Math.max(0, 1000 - elapsed)
+      const remaining = Math.max(0, 500 - elapsed)
       setTimeout(() => {
         this.isLoading = false
       }, remaining)
@@ -63,18 +78,26 @@ async function getDailyWallpaper() {
 </script>
 
 <template>
+
+
   <div class="bg-wrap">
     <img :src="DailyWallpaper" alt="" @load="finishLoading()" @error="finishLoading()" />
     <div class="bg-overlay"></div>
   </div>
+
+
   <main>
-    <HomePage></HomePage>
+    <RouterView />
   </main>
-  <Transition name="fade">
-    <div v-if="isLoading" class="loading-overlay">
-      <div class="spinner"></div>
-      <p>加载中</p>
-    </div>
+
+
+  <Transition name="fade-up">
+    <div v-if="isLoading" class="loading-overlay-BLACK"></div>
   </Transition>
+  <Transition name="fade-down">
+    <div v-if="isLoading" class="loading-overlay-ORANGE"></div>
+  </Transition>
+
+
   <CustomCursor />
 </template>
