@@ -31,6 +31,12 @@
   clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
 }
 
+.loading-tips-border {
+  bottom:20%;
+  padding: 5px 24px;
+}
+
+
 /* 加载界面随机提示文字（h1 大小，层内 flex 居中，随黑层滑入滑出） */
 .loading-tip {
   font-size: clamp(28px, 4vw, 48px);

@@ -18,6 +18,8 @@ export const loadingStart = ref(Date.now())
 // 当前要显示的随机 tip（初始化抽一条，首屏加载也有内容）
 export const currentTip = ref(pickRandomTip())
 
+const WaitTime = 1000 // 最短停留时长（毫秒）
+
 // 随机抽取一条 tip（带空数组保护）
 function pickRandomTip() {
   return uselessTips[Math.floor(Math.random() * uselessTips.length)] ?? ''
@@ -40,7 +42,7 @@ export function showLoading() {
 export function finishLoading() {
   if (!isLoading.value) return
   const elapsed = Date.now() - loadingStart.value
-  const remaining = Math.max(0, 1000 - elapsed)
+  const remaining = Math.max(0, WaitTime - elapsed)
   setTimeout(() => {
     isLoading.value = false
   }, remaining)
