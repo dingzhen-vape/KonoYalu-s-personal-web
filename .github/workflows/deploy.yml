@@ -1,9 +1,10 @@
 # ============================================================
-# 自动构建并部署到 GitHub Pages（官方 GitHub Actions 模式）
+# 自动构建并部署到 GitHub Pages（分支模式，稳定不排队）
 # 触发：每次 push 到 main 分支
 # 流程：安装依赖 → 构建 → 复制 404.html（SPA 刷新兜底）
-#       → .nojekyll（跳过 Jekyll）→ 上传产物 → 发布
-# 首次使用：仓库 Settings → Pages → Source 选 "GitHub Actions"
+#       → .nojekyll（跳过 Jekyll 构建）→ 推送 gh-pages 分支
+# 首次使用：仓库 Settings → Pages → Source 选
+#          "Deploy from a branch" → gh-pages / root
 # ============================================================
 
 name: Deploy to GitHub Pages
@@ -12,19 +13,11 @@ on:
   push:
     branches: [main]
 
-# 允许 Actions 写 Pages 与发布令牌
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# 同一时间只允许一次 Pages 部署，新 push 会取消进行中的
-concurrency:
-  group: pages
-  cancel-in-progress: true
+  contents: write
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: 检出代码
@@ -48,21 +41,8 @@ jobs:
       - name: 跳过 Jekyll 处理（纯静态站点）
         run: touch dist/.nojekyll
 
-      - name: 配置 Pages
-        uses: actions/configure-pages@v5
-
-      - name: 上传构建产物
-        uses: actions/upload-pages-artifact@v3
+      - name: 部署到 gh-pages 分支
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ./dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: 部署到 GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
