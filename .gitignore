@@ -41,3 +41,6 @@ __screenshots__/
 # opencode
 start-opencode.bat
 *.txt
+
+# 手动部署脚本（本地工具）
+deploy-manual.ps1
