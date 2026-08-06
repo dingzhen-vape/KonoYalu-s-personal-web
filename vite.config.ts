@@ -6,6 +6,8 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // GitHub Pages 部署在仓库子路径下，构建产物资源路径必须指向该子路径
+  base: '/KonoYalu-s-personal-web/',
   plugins: [
     vue(),
     vueDevTools(),
