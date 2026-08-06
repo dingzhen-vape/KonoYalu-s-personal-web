@@ -50,6 +50,18 @@
   object-fit: cover;
 }
 
+.work-thumb-art{
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.work-thumb-art img {
+  scale: 0.1;
+  object-fit: cover;
+}
+
 /* 信息区：标题 + 描述 + 标签 */
 .work-info {
   padding: 24px;

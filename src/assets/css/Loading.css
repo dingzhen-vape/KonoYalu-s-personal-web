@@ -31,11 +31,46 @@
   clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
 }
 
+/* ---------- 加载期间的提示框：左下角、暗色底 + 右侧金色竖杠 ---------- */
 .loading-tips-border {
-  bottom:20%;
-  padding: 5px 24px;
+  position: fixed;
+  left: 24px;
+  bottom: 10%;
+  z-index: 200;
+  max-width: 360px;
+  padding: 16px 24px;
+  background: var(--surface);
+  border-right: 5px solid var(--accent); /* 右侧粗金色竖杠 */
+  /* border-radius: 4px; */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
+/* 提示框文字 */
+.loading-tips-border p {
+  font-size: 18px;
+  letter-spacing: 2px;
+  line-height: 1.7;
+  color: var(--text-sub);
+}
+
+/* 提示框过渡：从左边滑入弹出、向左滑走消失 */
+.tip-pop-enter-active {
+  transition:
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1s ease;
+}
+
+.tip-pop-leave-active {
+  transition:
+    transform 1s cubic-bezier(0.56, 0, 0.993, 0.369),
+    opacity 1s ease;
+}
+
+.tip-pop-enter-from,
+.tip-pop-leave-to {
+  transform: translateX(-120%);
+  opacity: 0;
+}
 
 /* 加载界面随机提示文字（h1 大小，层内 flex 居中，随黑层滑入滑出） */
 .loading-tip {
@@ -63,6 +98,7 @@
   background: var(--accent);
   clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
 }
+
 
 /* ============================================================
    过渡动画（Vue <Transition> 类名）
@@ -92,7 +128,7 @@
 
 /* 金色层进入：立即滑入 */
 .fade-down-enter-active {
-  transition: transform var(--duration) ease-in-out;
+  transition: transform var(--duration) ease-in-out ;
 }
 
 /* 金色层起始位置：视口左侧外 */

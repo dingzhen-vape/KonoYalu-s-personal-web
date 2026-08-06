@@ -11,7 +11,7 @@
 import CustomCursor from './components/CustomCursor.vue'
 import axios from 'axios'
 // 共享加载状态（v-if 控制遮罩显隐、壁纸加载完成时揭罩、随机 tip 显示）
-import { isLoading, currentTip, finishLoading } from './loading'
+import { isLoading, currentTip, tipVisible, finishLoading } from './loading'
 
 export default {
   components: {
@@ -19,7 +19,7 @@ export default {
   },
   // 把共享状态暴露给模板使用（Options API 需 setup 返回）
   setup() {
-    return { isLoading, currentTip }
+    return { isLoading, currentTip, tipVisible }
   },
   data() {
     return {
@@ -79,10 +79,10 @@ async function getDailyWallpaper() {
 
 
 
-  <!-- 左下角的提示 -->
-  <Transition name="fate-Tips">
-    <div v-if="isLoading" class="loading-tips-border">
-      <p class="loading-tip">{{ currentTip }}</p>
+  <!-- 加载期间的提示框：右下角、暗色底 + 右侧金色竖杠，延迟弹出 -->
+  <Transition name="tip-pop">
+    <div v-if="tipVisible" class="loading-tips-border">
+      <p>{{ currentTip }}</p>
     </div>
   </Transition>
   <!-- ============ 加载遮罩：双层斜切滑入/滑出（时序见 Loading.css） ============ -->

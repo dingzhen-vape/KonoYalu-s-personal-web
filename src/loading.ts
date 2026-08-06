@@ -18,7 +18,35 @@ export const loadingStart = ref(Date.now())
 // 当前要显示的随机 tip（初始化抽一条，首屏加载也有内容）
 export const currentTip = ref(pickRandomTip())
 
-const WaitTime = 1000 // 最短停留时长（毫秒）
+const WaitTime = 600 // 遮罩最短停留时长（毫秒）
+
+// ===== 提示框参数（可自行调整） =====
+const TipDelay = 1050 // 加载开始后延迟多少毫秒弹出提示框
+const TipHoldTime = 2000 // 提示框弹出后停留多少毫秒再滑走
+// ====================================
+
+// 提示框是否可见（加载动画进行中延迟弹出，停留后自动隐藏）
+export const tipVisible = ref(false)
+
+// 提示框定时器句柄（用于弹出前取消上一次调度）
+let tipTimer: ReturnType<typeof setTimeout> | null = null
+
+/**
+ * 调度提示框：延迟 TipDelay 后弹出，再停留 TipHoldTime 后自动隐藏
+ * 在模块初始化（首屏）与每次 showLoading（路由切换）时调用
+ */
+function scheduleTip() {
+  if (tipTimer) clearTimeout(tipTimer)
+  tipTimer = setTimeout(() => {
+    tipVisible.value = true
+    tipTimer = setTimeout(() => {
+      tipVisible.value = false
+    }, TipHoldTime)
+  }, TipDelay)
+}
+
+// 首屏加载：模块加载即开始调度提示框
+scheduleTip()
 
 // 随机抽取一条 tip（带空数组保护）
 function pickRandomTip() {
@@ -33,6 +61,7 @@ export function showLoading() {
   currentTip.value = pickRandomTip()
   loadingStart.value = Date.now()
   isLoading.value = true
+  scheduleTip()
 }
 
 /**

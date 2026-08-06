@@ -47,7 +47,7 @@
       <p class="section-en">GALLERY</p>
       <div class="works-grid">
         <a v-for="work in works" :key="work.title" class="work-card" :href="work.link">
-          <div class="work-thumb" style="background: linear-gradient(135deg, #23232e, #3a3a4d)">
+          <div class="work-thumb-art" style="background: linear-gradient(135deg, #23232e, #3a3a4d)">
             <img v-if="work.icon" :src="work.icon" />
           </div>
           <div class="work-info">
@@ -104,7 +104,10 @@ import bilibiliIcon from '../assets/imgs/哔哩哔哩.svg'
 import XIcon from '../assets/imgs/x (1).svg'
 import PixivIcon from '../assets/imgs/Pixiv.svg'
 import QQIcon from '../assets/imgs/qq.svg'
-
+import Work1 from '../assets/imgs/MyArtWorks/稿件20260726165823-info.png'
+import Work2 from '../assets/imgs/MyArtWorks/ralsei2.png'
+import Work3 from '../assets/imgs/MyArtWorks/wowaa.png'
+import Work4 from '../assets/imgs/MyArtWorks/QQQ.png'
 export default {
   name: 'HomePage',
   components: {
@@ -115,32 +118,32 @@ export default {
       // ---------- 画作作品集（icon 填本地图片路径，link 可指向投稿页） ----------
       works: [
         {
-          title: '示例作品一',
-          icon: '',
-          desc: '占位描述：这里写这幅画的简介',
+          title: '稿件作品',
+          icon: Work1,
+          desc: '近期我较为满意的一张双人半身氛围作品,但我个人感觉仍有进步空间',
           link: '#',
-          tags: ['插画', '示例'],
+          tags: ['插画', '半身','氛围',"双人"],
         },
         {
-          title: '示例作品二',
-          icon: '',
-          desc: '占位描述：光影渲染练习',
+          title: 'Deltarune Ralsei',
+          icon: Work2,
+          desc: '氛围感作品,当时玩玩Deltarune有感而发,我挺喜欢这个作品的',
           link: '#',
-          tags: ['光影'],
+          tags: ['插画','Ralsei',"Deltarune"],
         },
         {
-          title: '示例作品三',
-          icon: '',
-          desc: '占位描述：结构刻画练习',
+          title: '自设半身',
+          icon: Work3,
+          desc: '聚光灯氛围感作品,还行看着',
           link: '#',
-          tags: ['结构'],
+          tags: ['半身','自设'],
         },
         {
-          title: '示例作品四',
-          icon: '',
-          desc: '占位描述：材质与背景练习',
+          title: 'OC 夏煜',
+          icon: Work4,
+          desc: '想画QQ,但是我的画风好像不太适合画QQ,这个姿势也是有参考的,这也是我第一次尝试用颜色将线稿盖掉',
           link: '#',
-          tags: ['材质'],
+          tags: ['OC',"夏煜"],
         },
       ],
       // ---------- 联系方式（点击卡片跳转外部链接） ----------
