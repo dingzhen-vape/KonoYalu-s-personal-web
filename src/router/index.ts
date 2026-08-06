@@ -12,19 +12,21 @@ import Page2 from '../components/Page2.vue'
 import { showLoading, finishLoading } from '../loading'
 
 const router = createRouter({
-  // HTML5 History 模式（URL 不带 #）
-  history: createWebHistory(),
+  // HTML5 History 模式；base 用 Vite 注入的 BASE_URL（部署到 GitHub Pages
+  // 子路径 /KonoYalu-s-personal-web/ 时路由才能正确匹配）
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', name: 'home', component: HomePage },
     { path: '/page2', name: 'page2', component: Page2 },
   ],
-  scrollBehavior(to){
-    if (to.hash){
-      return(to.hash,{behavior:'instant'})
-    }else{
-      return{top:0}
+  scrollBehavior(to) {
+    // 锚点导航：滚到对应区块（behavior 省略 → 跟随 CSS 平滑滚动）
+    if (to.hash) {
+      return { el: to.hash }
     }
-  }
+    // 跨页切换：回到顶部（同样跟随 CSS 平滑）
+    return { top: 0 }
+  },
 })
 
 // 导航计数：防止快速连点时，旧导航的延迟放行覆盖新导航
