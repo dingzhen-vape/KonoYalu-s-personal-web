@@ -247,9 +247,25 @@ footer {
   font-weight: bold;
 }
 
-iframe{
-  float: left;
-  left: 0;
+/* 网易云音乐播放器：固定悬浮右下角 + 反色适配暗色主题 */
+.music-player {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 95; /* 高于页面内容，低于加载遮罩(100/101) */
+  border-radius: 8px; /* 圆角 */
+  border: 1px solid var(--border);
+  /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); 阴影 */
+  /* 白转暗 + 色相校正：播放器白底 UI 反色融入深色主题 */
+  filter: invert(1) hue-rotate(180deg) brightness(0.9);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.music-player:hover {
+  transform: translateY(-4px); /* hover 上浮，与卡片手感一致 */
+  /* box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6); */
 }
 
 
