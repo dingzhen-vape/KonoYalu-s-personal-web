@@ -4,6 +4,10 @@
    说明：联系方式卡片（Contacts 板块）也复用了 .work-card 样式
    ============================================================ */
 
+:root {
+  --img-depth: -300px; /* 作品图片向卡片内部（Z 轴）移动的距离，可自行调整 */
+}
+
 #Works {
   max-width: 960px;
   margin: 0 auto;
@@ -17,49 +21,55 @@
   gap: 28px;
 }
 
-/* 卡片：竖排布局（缩略图在上、信息在下） */
+/* 卡片：竖排布局（缩略图在上、信息在下）
+   蒙版用 clip-path 而非 overflow:hidden——
+   overflow 会打断 3D 上下文，使图片的 translateZ 失效 */
 .work-card {
   display: flex;
   flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 4px;
-  overflow: hidden;
-  transition:
-    border-color 0.3s ease,
-    transform 0.3s ease;
+  clip-path: inset(0 round 4px); /* 剪贴蒙版：裁掉超出卡片的内容（含圆角） */
+  transform-style: preserve-3d; /* 允许子元素产生 3D 纵深 */
+  /* 注意：transition 不能含 transform，否则干扰 GSAP 进场动画与 v-tilt */
+  transition: border-color 0.3s ease;
 }
 
 .work-card:hover {
-  border-color: var(--accent); /* hover 边框变金 */
-  transform: translateY(-4px); /* hover 上浮 */
+  border-color: var(--accent); /* hover 边框变金（transform 由 v-tilt 指令管理） */
 }
 
-/* 缩略图区域：固定宽高比、内容居中 */
+/* 缩略图区域：固定宽高比、内容居中、维持 3D 上下文 */
 .work-thumb {
-  overflow: hidden;
   aspect-ratio: 16 / 9;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* 缩略图内部图片：缩小比例展示（图标类素材避免撑满） */
+/* 缩略图内部图片：布局尺寸跟随容器 */
 .work-thumb img {
-  scale: 0.3;
-  object-fit: cover;
+  /* scale: 0.35; */
+  width: 50%;
+  height: 50%;
+  object-fit:contain;
+  
 }
 
-.work-thumb-art{
-  overflow: hidden;
+/* Page2 画作缩略图：同样保留 3D 上下文 */
+.work-thumb-art {
   aspect-ratio: 16 / 9;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .work-thumb-art img {
-  scale: 0.1;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  transform: scale(0.75);
 }
 
 /* 信息区：标题 + 描述 + 标签 */

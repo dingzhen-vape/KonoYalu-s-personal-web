@@ -10,6 +10,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 // 路由实例（/ 主页、/page2 画师页，含加载遮罩守卫）
 import router from './router/index.ts'
+// v-tilt 指令：卡片 3D 面向鼠标倾斜
+import tilt from './directives/tilt'
 
-// 创建应用 → 挂载路由 → 渲染到 #app
-createApp(App).use(router).mount('#app')
+// 创建应用 → 注册指令 → 挂载路由 → 渲染到 #app
+createApp(App).directive('tilt', tilt).use(router).mount('#app')

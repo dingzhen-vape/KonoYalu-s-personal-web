@@ -29,14 +29,12 @@
   border: 1px solid var(--border);
   border-radius: 4px;
   overflow: hidden;
-  transition:
-    border-color 0.3s ease,
-    transform 0.3s ease;
+  /* 注意：transition 不能含 transform，否则干扰 GSAP 进场动画与 v-tilt */
+  transition: border-color 0.3s ease;
 }
 
 .tech-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
+  border-color: var(--accent); /* hover 边框变金（transform 由 v-tilt 指令管理） */
 }
 
 /* 图标区：渐变背景、图标居中 */

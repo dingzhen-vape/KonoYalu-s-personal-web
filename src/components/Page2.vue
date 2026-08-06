@@ -46,8 +46,8 @@
       <h2 class="section-title">作品集</h2>
       <p class="section-en">GALLERY</p>
       <div class="works-grid">
-        <a v-for="work in works" :key="work.title" class="work-card" :href="work.link">
-          <div class="work-thumb-art" style="background: linear-gradient(135deg, #23232e, #3a3a4d)">
+        <a v-for="work in works" :key="work.title" v-tilt class="work-card" :href="work.link">
+          <div class="work-thumb-art">
             <img v-if="work.icon" :src="work.icon" />
           </div>
           <div class="work-info">
@@ -68,7 +68,7 @@
       <p class="section-en">CONTACT</p>
       <!-- <h3 class="section-sub">Where you can find me</h3> -->
       <div class="contacts-grid">
-        <a v-for="contact in Contacts" :key="contact.title" class="work-card" :href="contact.link">
+        <a v-for="contact in Contacts" :key="contact.title" v-tilt class="work-card" :href="contact.link">
           <div
             class="contact-thumb"
             style="background-image: linear-gradient(135deg, #23232e, #3a3a4d)"
@@ -85,7 +85,7 @@
 
     <!-- 底部 -->
     <footer>© 2026 食我压路 Written at 2026-08-04</footer>
-    <MagicBox targets=".tech-card, .work-card, .contact-card,h1,h2,h3" />
+    <MagicBox targets=".tech-card, .work-card, .contact-card" />
   </div>
 </template>
 
@@ -108,10 +108,16 @@ import Work1 from '../assets/imgs/MyArtWorks/稿件20260726165823-info.png'
 import Work2 from '../assets/imgs/MyArtWorks/ralsei2.png'
 import Work3 from '../assets/imgs/MyArtWorks/wowaa.png'
 import Work4 from '../assets/imgs/MyArtWorks/QQQ.png'
+// 滚动进场动画（滚入视口时淡入 + 右移）
+import { initReveal } from '../reveal'
 export default {
   name: 'HomePage',
   components: {
     MagicBox,
+  },
+  mounted() {
+    // 页面挂载后初始化滚动进场动画（路由切换重扫安全）
+    this.$nextTick(() => initReveal(this.$el))
   },
   data() {
     return {

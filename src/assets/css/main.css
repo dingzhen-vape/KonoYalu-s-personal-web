@@ -247,6 +247,11 @@ footer {
   font-weight: bold;
 }
 
+iframe{
+  float: left;
+  left: 0;
+}
+
 
 /* 窄屏适配 */
 @media (max-width: 768px) {

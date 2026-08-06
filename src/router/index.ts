@@ -18,6 +18,13 @@ const router = createRouter({
     { path: '/', name: 'home', component: HomePage },
     { path: '/page2', name: 'page2', component: Page2 },
   ],
+  scrollBehavior(to){
+    if (to.hash){
+      return(to.hash,{behavior:"instant"})
+    }else{
+      return{top:0,behavior:"instant"}
+    }
+  }
 })
 
 // 导航计数：防止快速连点时，旧导航的延迟放行覆盖新导航
