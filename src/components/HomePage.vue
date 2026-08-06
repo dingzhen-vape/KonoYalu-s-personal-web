@@ -68,7 +68,7 @@
       <div class="works-grid">
         <a v-for="work in works" :key="work.title" v-tilt class="work-card" :href="work.link">
           <div class="work-thumb" :style="{ background: work.thumbGradient }">
-            <img :src="work.icon" />
+            <img decoding="async" :src="work.icon" />
           </div>
           <div class="work-info">
             <h3 class="work-title">{{ work.title }}</h3>
@@ -134,6 +134,8 @@ import wurstIcon from '../assets/imgs/works/Wurst.png'
 import meteorIcon from '../assets/imgs/works/Meteor.png'
 // 滚动进场动画（滚入视口时淡入 + 右移）
 import { initReveal } from '../reveal'
+// 图片预加载（进入页面即下载本页资源，避免滚动显示时卡顿）
+import { preloadImages } from '../preload'
 
 export default {
   name: 'HomePage',
@@ -141,6 +143,19 @@ export default {
     MagicBox,
   },
   mounted() {
+    // 进入页面立即预加载本页图标与缩略图
+    preloadImages([
+      cplusplusIcon,
+      csharpIcon,
+      pythonIcon,
+      javascriptIcon,
+      javaIcon,
+      vueIcon,
+      bilibiliIcon,
+      githubIcon,
+      wurstIcon,
+      meteorIcon,
+    ])
     // 页面挂载后初始化滚动进场动画（路由切换重扫安全）
     this.$nextTick(() => initReveal(this.$el))
   },

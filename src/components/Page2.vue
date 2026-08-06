@@ -48,7 +48,7 @@
       <div class="works-grid">
         <a v-for="work in works" :key="work.title" v-tilt class="work-card" :href="work.link">
           <div class="work-thumb-art">
-            <img v-if="work.icon" :src="work.icon" />
+            <img v-if="work.icon" decoding="async" :src="work.icon" />
           </div>
           <div class="work-info">
             <h3 class="work-title">{{ work.title }}</h3>
@@ -104,18 +104,22 @@ import bilibiliIcon from '../assets/imgs/哔哩哔哩.svg'
 import XIcon from '../assets/imgs/x (1).svg'
 import PixivIcon from '../assets/imgs/Pixiv.svg'
 import QQIcon from '../assets/imgs/qq.svg'
-import Work1 from '../assets/imgs/MyArtWorks/稿件20260726165823-info.png'
-import Work2 from '../assets/imgs/MyArtWorks/ralsei2.png'
-import Work3 from '../assets/imgs/MyArtWorks/wowaa.png'
-import Work4 from '../assets/imgs/MyArtWorks/QQQ.png'
+import Work1 from '../assets/imgs/MyArtWorks/稿件20260726165823-info.webp'
+import Work2 from '../assets/imgs/MyArtWorks/ralsei2.webp'
+import Work3 from '../assets/imgs/MyArtWorks/wowaa.webp'
+import Work4 from '../assets/imgs/MyArtWorks/QQQ.webp'
 // 滚动进场动画（滚入视口时淡入 + 右移）
 import { initReveal } from '../reveal'
+// 图片预加载（进入页面即下载画作，避免滚动显示时卡顿）
+import { preloadImages } from '../preload'
 export default {
   name: 'HomePage',
   components: {
     MagicBox,
   },
   mounted() {
+    // 进入页面立即预加载全部画作（遮罩盖住期间完成下载）
+    preloadImages([Work1, Work2, Work3, Work4])
     // 页面挂载后初始化滚动进场动画（路由切换重扫安全）
     this.$nextTick(() => initReveal(this.$el))
   },

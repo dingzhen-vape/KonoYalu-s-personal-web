@@ -22,8 +22,9 @@
 }
 
 /* 卡片：竖排布局（缩略图在上、信息在下）
-   蒙版用 clip-path 而非 overflow:hidden——
-   overflow 会打断 3D 上下文，使图片的 translateZ 失效 */
+   蒙版用 clip-path 而非 overflow:hidden（圆角裁剪）
+   说明：图片已不使用 translateZ，无 preserve-3d（3D 合成层拖累滚动性能；
+        v-tilt 的透视写在自身 transform 中，不受影响） */
 .work-card {
   display: flex;
   flex-direction: column;
@@ -31,7 +32,6 @@
   border: 1px solid var(--border);
   border-radius: 4px;
   clip-path: inset(0 round 4px); /* 剪贴蒙版：裁掉超出卡片的内容（含圆角） */
-  transform-style: preserve-3d; /* 允许子元素产生 3D 纵深 */
   /* 注意：transition 不能含 transform，否则干扰 GSAP 进场动画与 v-tilt */
   transition: border-color 0.3s ease;
 }

@@ -20,9 +20,9 @@ const router = createRouter({
   ],
   scrollBehavior(to){
     if (to.hash){
-      return(to.hash,{behavior:"instant"})
+      return(to.hash,{behavior:'instant'})
     }else{
-      return{top:0,behavior:"instant"}
+      return{top:0}
     }
   }
 })
