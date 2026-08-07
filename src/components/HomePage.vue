@@ -232,7 +232,7 @@ export default {
           desc: '基于 Vue 3 的个人主页与作品展示',
           tags: ['Vue', 'Vite', 'TS'],
           thumbGradient: 'linear-gradient(135deg, #23232e, #3a3a4d)',
-          link: '#',
+          link: 'https://github.com/dingzhen-vape/KonoYalu-s-personal-web',
         },
         {
           title: 'WurstCN[归档]',
