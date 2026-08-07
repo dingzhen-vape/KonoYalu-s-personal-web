@@ -103,6 +103,18 @@
       </div>
     </section>
 
+    <!-- 特别感谢 -->
+    <section id="Thanks">
+      <h2 class="section-title">特别感谢</h2>
+      <p class="section-en">SPECIAL THANKS</p>
+      <ul class="thanks-list">
+        <li v-for="item in Thanks" :key="item.who" class="thanks-item">
+          <span class="thanks-who">{{ item.who }}</span>
+          <span class="thanks-reason">{{ item.reason }}</span>
+        </li>
+      </ul>
+    </section>
+
     <!-- 底部 -->
     <footer>© 2026 食我压路 Written at 2026-08-04</footer>
     <MagicBox targets=".tech-card, .work-card, .contact-card" />
@@ -268,6 +280,25 @@ export default {
           icon: githubIcon,
           desc: 'github主页',
           link: 'https://github.com/dingzhen-vape?tab=repositories',
+        },
+      ],
+      // ---------- 特别感谢（who 为感谢对象，reason 为感谢原因） ----------
+      Thanks: [
+        {
+          who: 'Vue框架',
+          reason: '十分方便的响应式前端框架,开发效率up',
+        },
+        {
+          who: 'Opencode',
+          reason: '十分好用的开源agent',
+        },
+        {
+          who: 'Deepseek V4 Flash 正式版',
+          reason: '好便宜啊',
+        },
+        {
+          who: '我',
+          reason: '感谢老己',
         },
       ],
     }

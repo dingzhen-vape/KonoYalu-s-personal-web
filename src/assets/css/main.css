@@ -221,6 +221,49 @@ a {
   font-size: 18px;
 }
 
+/* ---------- 特别感谢 ---------- */
+#Thanks {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 120px 48px;
+}
+
+.thanks-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.thanks-item {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  transition: border-color 0.25s ease;
+}
+
+.thanks-item:hover {
+  border-color: var(--accent); /* hover 金色描边，与卡片一致 */
+}
+
+.thanks-who {
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-main);
+  letter-spacing: 1px;
+}
+
+.thanks-reason {
+  font-size: 14px;
+  color: var(--text-sub);
+  line-height: 1.7;
+}
+
 /* ---------- 页脚 ---------- */
 footer {
   padding: 32px 0;

@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 // 文字元素选择器（淡入 + 右移）
 const TEXT_SELECTOR =
-  '.section-title, .section-en, .section-sub, .hero-vertical, .hero-name, .hero-sub, .hero-actions, .about-body, footer'
+  '.section-title, .section-en, .section-sub, .hero-vertical, .hero-name, .hero-sub, .hero-actions, .about-body, .thanks-list, footer'
 
 // 卡片选择器（仅淡入，不动 transform 避免与 v-tilt 冲突）
 const CARD_SELECTOR = '.tech-card, .work-card'
